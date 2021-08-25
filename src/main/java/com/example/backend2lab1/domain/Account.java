@@ -13,7 +13,7 @@ public class Account {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -22,4 +22,25 @@ public class Account {
     @Column(name = "balance")
     private double balance;
 
+    public Account(String name) {
+        this.name = name;
+        this.balance = 0;
+    }
+
+    public void deposit(double amount) {
+        if(amount < 0)
+            throw new IllegalStateException("Could not deposit a negative amount");
+
+        this.balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        if(amount > this.balance)
+            throw new IllegalStateException("Could not withdraw amount larger than balance");
+
+        if(amount < 0)
+            throw new IllegalStateException("Could not withdraw a negative amount");
+
+        this.balance -= amount;
+    }
 }
