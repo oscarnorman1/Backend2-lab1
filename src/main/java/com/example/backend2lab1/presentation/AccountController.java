@@ -3,12 +3,14 @@ package com.example.backend2lab1.presentation;
 import com.example.backend2lab1.application.AccountService;
 import com.example.backend2lab1.domain.Account;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class AccountController {
 
     private final AccountService accountService;
