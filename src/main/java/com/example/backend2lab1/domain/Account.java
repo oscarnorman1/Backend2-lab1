@@ -1,14 +1,13 @@
 package com.example.backend2lab1.domain;
 
 import com.example.backend2lab1.persistence.AccountRepository;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @RequiredArgsConstructor
 public class Account {
 
