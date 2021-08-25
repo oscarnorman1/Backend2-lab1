@@ -8,21 +8,19 @@ const withdrawBtn = document.querySelector("#withdraw-btn");
 
 
 depositBtn.addEventListener('click', () => {
-    // const name = document.querySelector('#name').value
-    // const amount = Number(document.querySelector('#amount').value)
+    const name = document.querySelector('#name').value
+    const amount = Number(document.querySelector('#amount').value)
 
-
-    fetchData();
+    fetchData(name, amount);
 });
 
 withdrawBtn.addEventListener('click', () => {
     
 });
 
+const fetchData = (name, amount) => {
 
-const fetchData = () => {
-    fetch("http://localhost:8080/accounts/all")
-    .then(data => data.json())
-    .then(json => console.log(json))
-    .catch(error => console.log(error));
+    fetch(`http://localhost:8080/accounts/deposit/${name}/${amount}`)
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
 };
