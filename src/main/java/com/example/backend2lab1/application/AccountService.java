@@ -33,27 +33,34 @@ public class AccountService {
     }
 
     @Transactional
-    public boolean openAccount(String name) {
+    public Account openAccount(String name) {
         if(accountRepository.existsAccountByName(name))
-            return false;
+            throw new IllegalArgumentException("Account with name " + name + " already exists");
 
-        accountRepository.save(new Account(name));
-        return true;
+        Account newAcc = new Account(name);
+        accountRepository.save(newAcc);
+        return newAcc; // Bara för att visa
     }
 
     @Transactional
-    public void deposit(String name, double amount) {
+    public Account deposit(String name, double amount) {
         Account acc = accountRepository.findAccountByName(name);
 
-        if(!Validator.isNull(acc))
+        if(!Validator.isNull(acc)) {
             acc.deposit(amount);
+            return acc;
+        }
+        throw new IllegalArgumentException("Account does not exist");
     }
 
     @Transactional
-    public void withdraw(String name, double amount) {
+    public Account withdraw(String name, double amount) {
         Account acc = accountRepository.findAccountByName(name);
 
-        if(!Validator.isNull(acc))
+        if(!Validator.isNull(acc)) {
             acc.withdraw(amount);
+            return acc;
+        }
+        throw new IllegalArgumentException("Account does not exist");
     }
 }

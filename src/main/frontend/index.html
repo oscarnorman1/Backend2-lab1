@@ -11,21 +11,23 @@
             integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
         <div class="content">
             <div class="form">
+                <div class="log">
+                    <p id="show-info"></p>
+                </div>
                 <label for="name">Namn:</label>
                 <input type="text" class="form-control" id="name" />
                 <label for="amount">Belopp:</label>
                 <input type="numbers" class="form-control" id="amount" />
-                
+
                 <div class="buttons">
                     <button id="deposit-btn">Insättning</button>
                     <button id="withdraw-btn">Uttag</button>
                 </div>
-                
             </div>
         </div>
         <script src="./app.js"></script>

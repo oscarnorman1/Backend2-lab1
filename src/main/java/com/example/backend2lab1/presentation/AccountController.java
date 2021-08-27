@@ -31,19 +31,17 @@ public class AccountController {
     }
 
     @GetMapping("/openAccount/{name}")
-    public String openAccount(@PathVariable("name") String name) {
-        return accountService.openAccount(name) ? "Account added" : "Could not add account";
+    public Account openAccount(@PathVariable("name") String name) {
+        return accountService.openAccount(name);
     }
 
     @GetMapping("/accounts/deposit/{name}/{amount}")
-    public String depositToAccount(@PathVariable("name") String name, @PathVariable("amount") double amount) {
-        accountService.deposit(name, amount);
-        return "Successfully deposited " + amount + " kr into " + name + "s account.";
+    public Account depositToAccount(@PathVariable("name") String name, @PathVariable("amount") double amount) {
+        return accountService.deposit(name, amount);
     }
 
     @GetMapping("/accounts/withdraw/{name}/{amount}")
-    public String withdrawAmountFromAccount(@PathVariable("name") String name, @PathVariable("amount") double amount) {
-        accountService.withdraw(name, amount);
-        return "Successfully withdrew " + amount + " kr from " + name + "s account.";
+    public Account withdrawAmountFromAccount(@PathVariable("name") String name, @PathVariable("amount") double amount) {
+        return accountService.withdraw(name, amount);
     }
 }
