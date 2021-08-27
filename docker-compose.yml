@@ -1,0 +1,42 @@
+#version: '3.9'
+
+services:
+  #DB
+  mysql:
+    image: mysql:latest
+    ports:
+      - 27017:3306
+  environment:
+    - MYSQL_USER: root
+    - MYSQL_ROOT_PASSWORD: password
+
+#App
+  application:
+    container_name: bank_app
+    image:
+    ports:
+    environment:
+
+#Gui
+  frontend:
+    container_name:
+    image:
+
+
+
+
+
+#    MYSQL_HOST: mysql
+#        MYSQL_DATABASE: 'lab1_db'
+#    # So you don't have to use root, but you can if you like
+#    MYSQL_USER: 'root'
+#    # You can use whatever password you like
+#    MYSQL_PASSWORD: 'password'
+#    # Password for root access
+#    MYSQL_ROOT_PASSWORD: 'password'
+
+#    bankApp:
+#      build: .
+#      volumes:
+#        environment:
+#          depends_on:
