@@ -27,7 +27,8 @@ const depositFetch = (name, amount) => {
 
 const withdrawFetch = (name, amount) => {
     fetch(`http://localhost:8080/accounts/withdraw/${name}/${amount}`)
-        .then((data) => console.log(data))
+        .then(data => data.json())
+        .then(json => updateInfo(json.name, json.balance))
         .catch((error) => console.log(error));
 }
 
