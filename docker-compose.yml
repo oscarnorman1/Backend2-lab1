@@ -1,30 +1,30 @@
-#version: '3.9'
-
+version: "3.9"
 services:
-  #DB
   mysql:
-    image: mysql:latest
-    ports:
-      - 27017:3306
-  environment:
-    - MYSQL_USER: root
-    - MYSQL_ROOT_PASSWORD: password
-
-#App
-  application:
-    container_name: bank_app
-    image:
-    ports:
+    container_name: backend2_lab1
+    image: mysql:8.0.26
     environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=lab1
+    ports:
+      - "3309:3306"
 
-#Gui
-  frontend:
-    container_name:
-    image:
-
-
-
-
+#
+##App
+#  application:
+#    container_name: bank_appd
+#    image:
+#    ports:
+#    environment:
+#
+##Gui
+#  frontend:
+#    container_name:
+#    image:
+#
+#
+#
+#
 
 #    MYSQL_HOST: mysql
 #        MYSQL_DATABASE: 'lab1_db'
