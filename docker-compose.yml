@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   mysql:
-    image: mysql
+    image: mysql:latest
     platform: linux/x86_64
     environment:
       - MYSQL_ROOT_PASSWORD=password
@@ -11,7 +11,7 @@ services:
       - "3310:3310"
 
   application:
-    image: bank_app
+    image: baliharko/bank:1.0.0
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_ROOT:PASSWORD=password
