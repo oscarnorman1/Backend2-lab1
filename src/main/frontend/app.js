@@ -21,14 +21,26 @@ withdrawBtn.addEventListener('click', () => {
 const depositFetch = (name, amount) => {
     fetch(`http://localhost:8080/accounts/deposit/${name}/${amount}`)
         .then(data => data.json())
-        .then(json => updateInfo(json.name, json.balance))
+        .then(json => {
+            if(json.status && json.status != 200) {
+                showInfo.innerText = json.message;
+            } else {
+                updateInfo(json.name, json.balance)
+            }
+        })
         .catch((error) => console.log(error));
 };
 
 const withdrawFetch = (name, amount) => {
     fetch(`http://localhost:8080/accounts/withdraw/${name}/${amount}`)
         .then(data => data.json())
-        .then(json => updateInfo(json.name, json.balance))
+        .then(json => {
+            if(json.status && json.status != 200) {
+                showInfo.innerText = json.message;
+            } else {
+                updateInfo(json.name, json.balance)
+            }
+        })
         .catch((error) => console.log(error));
 }
 
@@ -36,3 +48,6 @@ const updateInfo = (name, balance) => {
     showInfo.innerText = '';
     showInfo.innerText = `${name}: ${balance} kr`;
 }
+
+
+
