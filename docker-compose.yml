@@ -11,7 +11,7 @@ services:
       - "3310:3310"
 
   application:
-    image: baliharko/bank:1.0.0
+    image: oscarnorman/bank:1.0.0
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_ROOT:PASSWORD=password
@@ -19,3 +19,9 @@ services:
       - "8080:8080"
     links:
       - mysql
+
+  risk:
+    image: daneidmark/risk:0.0.1
+    ports:
+      - "8082:8080"
+
