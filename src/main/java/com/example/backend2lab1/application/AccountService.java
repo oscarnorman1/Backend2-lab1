@@ -50,7 +50,7 @@ public class AccountService {
             acc.deposit(amount);
             return acc;
         }
-        throw new IllegalArgumentException("Account does not exist");
+        return openAccount(name);
     }
 
     @Transactional
