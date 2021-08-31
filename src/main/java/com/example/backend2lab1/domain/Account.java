@@ -29,17 +29,17 @@ public class Account {
 
     public void deposit(double amount) {
         if(amount < 0)
-            throw new IllegalStateException("Could not deposit a negative amount");
+            throw new IllegalArgumentException("Could not deposit a negative amount");
 
         this.balance += amount;
     }
 
     public void withdraw(double amount) {
         if(amount > this.balance)
-            throw new IllegalStateException("Could not withdraw amount larger than balance");
+            throw new IllegalArgumentException("Could not withdraw amount larger than balance");
 
         if(amount < 0)
-            throw new IllegalStateException("Could not withdraw a negative amount");
+            throw new IllegalArgumentException("Could not withdraw a negative amount");
 
         this.balance -= amount;
     }

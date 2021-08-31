@@ -1,16 +1,16 @@
-package com.example.backend2lab1.domain;
+package com.example.backend2lab1.risk;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RiskAssesment {
+public class RiskAssesmentDto {
 
     private final boolean isPass;
 
     @JsonCreator
-    public RiskAssesment(@JsonProperty("pass") boolean isPass) {
+    public RiskAssesmentDto(@JsonProperty("pass") boolean isPass) {
         this.isPass = isPass;
     }
 
