@@ -11,7 +11,7 @@ services:
       - "3310:3310"
 
   application:
-    image: oscarnorman1/bank:latest
+    image: baliharko/bank:1.0.1
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_ROOT:PASSWORD=password

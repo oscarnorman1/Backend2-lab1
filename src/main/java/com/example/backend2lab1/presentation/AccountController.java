@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin
@@ -16,7 +18,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping("/accounts/all")
-    public Iterable<Account> getAllAccounts() {
+    public List<Account> getAllAccounts() {
         return this.accountService.getAllAccounts();
     }
 

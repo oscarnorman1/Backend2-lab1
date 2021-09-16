@@ -24,7 +24,7 @@ public class Account {
 
     public Account(String name) {
         this.name = name;
-        this.balance = 0;
+        this.balance = 0.0;
     }
 
     public void deposit(double amount) {

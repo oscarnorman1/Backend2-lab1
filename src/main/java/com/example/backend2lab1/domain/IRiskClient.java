@@ -1,8 +1,8 @@
 package com.example.backend2lab1.domain;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public interface IRiskClient {
     boolean validate(String name);
 }

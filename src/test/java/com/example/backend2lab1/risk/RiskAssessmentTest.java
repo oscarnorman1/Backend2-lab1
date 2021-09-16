@@ -33,14 +33,32 @@ class RiskAssessmentTest {
 
     @Test
     void CanFetchAndDeserializeRiskAssessmentDto() {
+
+        wireMockServer.stubFor(get(urlEqualTo("/risk/dan")).willReturn(aResponse()
+                .withStatus(HttpStatus.OK.value())
+                .withHeader("content-type", APPLICATION_JSON.toString())
+                .withBody("{\"pass\": false}")));
+
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<RiskAssesmentDto> test = restTemplate.getForEntity("/risk/dan", RiskAssesmentDto.class);
+
+        ResponseEntity<RiskAssesmentDto> test = restTemplate.getForEntity(wireMockServer.baseUrl() + "/risk/dan", RiskAssesmentDto.class);
         assertEquals(test.getStatusCode(), HttpStatus.OK);
         assertEquals(test.getBody().isPass(), false);
     }
 
     @Test
     void validateTest() {
+
+        wireMockServer.stubFor(get(urlEqualTo("/risk/hejhej")).willReturn(aResponse()
+                .withStatus(HttpStatus.OK.value())
+                .withHeader("content-type", APPLICATION_JSON.toString())
+                .withBody("{\"pass\": true}")));
+
+        wireMockServer.stubFor(get(urlEqualTo("/risk/hej")).willReturn(aResponse()
+                .withStatus(HttpStatus.OK.value())
+                .withHeader("content-type", APPLICATION_JSON.toString())
+                .withBody("{\"pass\": false}")));
+
         assertTrue(riskassessment.validate("hejhej"));
         assertFalse(riskassessment.validate("hej"));
     }
