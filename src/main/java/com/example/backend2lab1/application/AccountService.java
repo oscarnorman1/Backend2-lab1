@@ -1,6 +1,7 @@
 package com.example.backend2lab1.application;
 
 import com.example.backend2lab1.domain.Account;
+import com.example.backend2lab1.domain.IRiskClient;
 import com.example.backend2lab1.domain.Validator;
 import com.example.backend2lab1.persistence.AccountRepository;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,11 @@ import javax.transaction.Transactional;
 public class AccountService {
 
     private final AccountRepository accountRepository;
+    private final IRiskClient riskAssessment;
 
-    public AccountService(AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository, IRiskClient riskAssessment) {
         this.accountRepository = accountRepository;
+        this.riskAssessment = riskAssessment;
     }
 
     @Transactional
@@ -36,6 +39,9 @@ public class AccountService {
     public Account openAccount(String name) {
         if(accountRepository.existsAccountByName(name))
             throw new IllegalArgumentException("Account with name " + name + " already exists");
+
+        if (!riskAssessment.validate(name))
+            throw new IllegalArgumentException("Bad credit score");
 
         Account newAcc = new Account(name);
         accountRepository.save(newAcc);
@@ -62,5 +68,9 @@ public class AccountService {
             return acc;
         }
         throw new IllegalArgumentException("Account does not exist");
+    }
+
+    public IRiskClient getRiskAssessment() {
+        return this.riskAssessment;
     }
 }
